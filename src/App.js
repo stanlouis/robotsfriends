@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactLoading from 'react-loading';
+import axios from 'axios';
 import CardList from './CardList';
 import SearchBox from './SearchBox';
 
@@ -14,11 +15,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      fetch('http://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(users => this.setState({ robots: users }));
-    }, 2000);
+    axios
+      .get('http://jsonplaceholder.typicode.com/users')
+      .then(users => this.setState({ robots: users.data }));
   }
   onSearchChange = event => {
     this.setState({ searchField: event.target.value });
@@ -32,7 +31,7 @@ class App extends Component {
     if (this.state.robots.length === 0) {
       return (
         <div className="center">
-         <h1 className="tc">Loading</h1> 
+          <h1 className="tc">Loading</h1>
           <ReactLoading type="cylon" color="444" height={'20%'} width={'20%'} />
         </div>
       );
