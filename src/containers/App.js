@@ -17,7 +17,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get("http://jsonplaceholder.typicode.com/users")
+      .get("https://jsonplaceholder.typicode.com/users")
       .then(users => this.setState({ robots: users.data }));
   }
   onSearchChange = event => {

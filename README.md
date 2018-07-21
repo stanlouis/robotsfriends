@@ -1,3 +1,3 @@
 # robotsfriends
 
-[RobotsFriends](http://stanlouis.github.io/robotsfriends)
+[RobotsFriends](https://stanlouis.github.io/robotsfriends)
