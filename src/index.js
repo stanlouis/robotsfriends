@@ -1,16 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunkMiddleware from 'redux-thunk';
 import './index.css';
 import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 import 'tachyons';
-import { searchRobots } from './reducers';
+import { searchRobots, requestRobots } from './reducers';
 
+const composeEnhancers = composeWithDevTools({
+  // Specify name here, actionsBlacklist, actionsCreators and other options if needed
+  thunkMiddleware
+});
+
+const rootReducer = combineReducers({ searchRobots, requestRobots });
 const store = createStore(
-  searchRobots,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer,
+  composeEnhancers(
+    applyMiddleware(thunkMiddleware)
+    // other store enhancers if any
+  )
 );
 
 ReactDOM.render(
