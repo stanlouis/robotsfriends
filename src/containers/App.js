@@ -9,11 +9,9 @@ import './app.css';
 
 import { setSearchField } from '../actions';
 
-const mapStateToProps = state => {
-  return {
-    searchField: state.searchField
-  };
-};
+const mapStateToProps = state => ({
+  searchField: state.searchField
+});
 
 const mapDispatchToProps = dispatch => ({
   onSearchChange: e => dispatch(setSearchField(e.target.value))
